@@ -19,7 +19,8 @@ const bcrypt = require('bcrypt');
         bcrypt.hash(password,7,  async  function(err, hash) {
           // Store hash in your password DB.
             await userModel.insertMany({firstName,lastName,email,password:hash})
-            res.json({message:"sucsses"})   
+            // res.json({message:"sucsses"})  
+             res.json(user._id)  
         });
            
         }     
