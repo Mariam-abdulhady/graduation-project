@@ -51,8 +51,8 @@ app.post('/upload',upload, auth ,async(req,res)=>{
     path:req.file.path,
    userID
    })
-  // res.json({message:"sucsses"})  
-   res.json({imageID:formUpload._id)
+   res.json({message:"sucsses"})  
+  // res.json({imageID:formUpload._id)
    //const{file}= req;
    // res.send({
    //   file:file.originalname,
