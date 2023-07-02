@@ -52,6 +52,7 @@ app.post('/upload',upload, auth ,async(req,res)=>{
    userID
    })
    res.json({message:"sucsses"})  
+   res.json({formUpload._id)
    //const{file}= req;
    // res.send({
    //   file:file.originalname,
