@@ -1,9 +1,9 @@
 const app=require('express').Router()
 const userModel =require('../models/user.model')
 const bcrypt =require('bcrypt')
-const auth = require('../middelware/auth')
+//const auth = require('../middelware/auth')
 //jwt
-const jwt =require('jsonwebtoken')
+//const jwt =require('jsonwebtoken')
 
  app.post('/signin',async  (req,res)=>{
     const{email,password}=req.body
@@ -14,9 +14,9 @@ const jwt =require('jsonwebtoken')
         if (match) {
            // token
          //1-install jwt
-    let token=jwt.sign({user:user._id,role:"user"},'patient')
-         res.json({token})
-       // res.json({userID:user._id})
+   // let token=jwt.sign({user:user._id,role:"user"},'patient')
+         //res.json({token})
+       res.json({userID:user._id})
 
       } else {
         
@@ -34,7 +34,7 @@ const jwt =require('jsonwebtoken')
    
  })
  //delete users
-app.delete('/delete',auth ,async (req,res)=>{
+app.delete('/delete' ,async (req,res)=>{
     try {
       console.log(req.body);
     const{_id} = req.body;
