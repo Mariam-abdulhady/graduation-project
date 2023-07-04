@@ -6,7 +6,7 @@ module.exports =  (req,res,next)=>{
         if(err){
           res.json({err});
         } else{
-             req.userID = decoded.userID;
+             //req.userID = decoded.userID;
          next()
         // next function
         }
