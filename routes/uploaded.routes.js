@@ -42,27 +42,26 @@ app.get('/home',async(req,res)=>{
  
 })
 
-app.post('/upload',upload,auth,async(req,res)=>{
+app.post('/upload',upload,async(req,res)=>{
 
- //console.log(req.file)
-const{userID,token}=req.body
-   //const{userID}=req.body
- try{
-  await diagonsticForm.insertMany({
-    path:req.file.path,
-  // userID
-   })
-   res.json({message:"sucsses"})  
-  // res.json({imageID:formUpload._id)
-   //const{file}= req;
-   // res.send({
-   //   file:file.originalname,
-   //   path:file.path,
-  //})
-}
- catch(error){
-  res.json({error})
- }
+try{
+  const token = req.headers.authorization?.split(' ')[1]
+  jwt.verify(token ,'patient',async(err,decoded)=>{
+           if(err){
+           res.json({err});
+           } else{
+             const userID = decoded.user;
+             await diagonsticForm.insertMany({
+              path:req.file.path,
+               userID:userID
+             })
+          
+             res.json({message:"sucsses"})  
+            }
+       })
+        }  catch(error){
+      res.json({error})
+     }
 })
 app.delete('/deleteImage',auth,async(req,res)=>{
   const{_id}=req.body;
